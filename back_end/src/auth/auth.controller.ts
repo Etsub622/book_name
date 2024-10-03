@@ -8,7 +8,6 @@ export class AuthController {
     constructor(private authService:AuthService){}
 
 @Post('/signup') 
-
 async signUp(@Body() signupDto:SignUpDto):Promise<{token:string}>{
     return this.authService.signUp(signupDto);}
 

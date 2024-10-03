@@ -11,7 +11,7 @@ import { LogInDto } from './dto/login.dto';
 export class AuthService {
     constructor(
         @InjectModel(User.name)
-        private readonly userModel: mongoose.Model<User>,
+        private userModel: mongoose.Model<User>,
         private jwtService: JwtService
     ){}
 
@@ -45,7 +45,6 @@ export class AuthService {
         const token = this.jwtService.sign({id:user._id});  
 
         return { token };
-
 
     }
 

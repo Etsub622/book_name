@@ -1,5 +1,5 @@
 /* eslint-disable prettier/prettier */
-import { IsEmpty, IsEnum, IsNotEmpty, IsString } from "class-validator";
+import { ArrayNotEmpty, IsArray, IsEmpty, IsEnum, IsNotEmpty, IsNumber, IsString } from "class-validator";
 import { Category } from "../schemas/book.schema";
 import { User } from "src/auth/schemas/auth.schema";
 
@@ -17,15 +17,21 @@ export class CreateBookDto{
     author: string;
 
     @IsNotEmpty()
-    @IsString()
-    price: number;
+    @IsArray()
+    @ArrayNotEmpty()
+    imageUrl: string;
 
     @IsNotEmpty()
-    @IsEnum(Category,{message: 'please enter a valid category'})
-    category: Category;
+    @IsNumber()
+    price: number;
 
-    @IsEmpty({message:"you can't pass userId "})
-    user:User
+    @IsArray()
+    @ArrayNotEmpty()
+    @IsEnum(Category, { each: true, message: 'please enter a valid category' })
+    category: Category[];
+
+    // @IsEmpty({message:"you can't pass userId "})
+    // user:User
 
 
 }

@@ -7,7 +7,10 @@ export enum Category{
     'adventure' = 'adventure',
     'comedy' = 'comedy',
     'drama' = 'drama',
-    'fantasy' = 'fantasy',}
+    'fantasy' = 'fantasy',
+    'crime' = 'crime',
+    'psychology'= 'psychology'
+}
 
 
 @Schema({timestamps: true})
@@ -23,9 +26,16 @@ export class Book{
     author: string;
 
     @Prop()
-    category :Category
+    price: number;
 
-    @Prop({type:mongoose.Schema.Types.ObjectId,ref:'User'})
-    user:User
+    @Prop({ type: [String], enum: Category, required: true })
+    category: Category[];
+
+    @Prop()
+    imageUrl:String[];
+
+    // @Prop({type:mongoose.Schema.Types.ObjectId,ref:'User'})
+    // user:User
 }
+
 export const BookSchema = SchemaFactory.createForClass(Book);

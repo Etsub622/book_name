@@ -22,9 +22,9 @@ export class UpdateBookDto {
 
     @IsOptional()
     @IsEnum(Category,{message: 'please enter a valid category'})
-    category: Category;
+    category: Category[];
 
 
-    @IsEmpty({message:"you can't pass userId "})
-    user:User
+    // @IsEmpty({message:"you can't pass userId "})
+    // user:User
 }
