@@ -1,5 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:front_end/core/usecase/usecase.dart';
+import 'package:front_end/features/book/domain/usecase/delete_book_usecase.dart';
 import 'package:front_end/features/onboarding/domain/entity/log_in_entity.dart';
 import 'package:front_end/features/onboarding/domain/entity/sign_up_entity.dart';
 import 'package:front_end/features/onboarding/domain/usecase/log_out_usecase.dart';
@@ -14,8 +15,11 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
   final SignUpUseCase signUpUseCase;
   final LogInUseCase logInUseCase;
   final LogoutUsecase loguoutUsecase;
+  final DeleteBookUsecase deleteBookUsecase;
 
-  AuthBloc(this.signUpUseCase, this.logInUseCase,this.loguoutUsecase) : super(AuthInitial()) {
+  AuthBloc(this.signUpUseCase, this.logInUseCase, this.loguoutUsecase,
+      this.deleteBookUsecase)
+      : super(AuthInitial()) {
     on<SingUpEvent>((event, emit) async {
       emit(AuthLoadingState());
 

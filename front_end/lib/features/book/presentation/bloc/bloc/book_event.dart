@@ -23,6 +23,12 @@ class DeleteBookEvent extends BookEvent {
   DeleteBookEvent(this.id);
 }
 
+class UpdateEvent extends BookEvent {
+  final String id;
+  final BookEntity book;
+  UpdateEvent(this.id, this.book);
+}
+
 class GetBooksByCategory extends BookEvent {
   final String category;
   GetBooksByCategory(this.category);
@@ -30,4 +36,9 @@ class GetBooksByCategory extends BookEvent {
 
 class ResetBookStateEvent extends BookEvent {
   const ResetBookStateEvent();
+}
+
+class SearchEvent extends BookEvent {
+  final String title;
+  SearchEvent(this.title);
 }

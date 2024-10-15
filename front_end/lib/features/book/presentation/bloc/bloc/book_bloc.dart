@@ -1,10 +1,13 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:front_end/core/usecase/usecase.dart';
 import 'package:front_end/features/book/domain/entity/book_entity.dart';
 import 'package:front_end/features/book/domain/usecase/book_list_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/book_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/delete_book_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/get_single_book_usecase.dart';
+import 'package:front_end/features/book/domain/usecase/search_usecase.dart';
+import 'package:front_end/features/book/domain/usecase/update_usecase.dart';
 part 'book_event.dart';
 part 'book_state.dart';
 
@@ -14,8 +17,16 @@ class BookBloc extends Bloc<BookEvent, BookState> {
   final GetSingleBookUsecase singleBookUsecase;
   final DeleteBookUsecase deleteBookUsecase;
   final GetBookByCategoryUsecase getBooksByCategory;
-  BookBloc(this.bookUseCase, this.getAllBooksUsecase, this.deleteBookUsecase,
-      this.singleBookUsecase, this.getBooksByCategory)
+  final SearchUsecase searchUsecase;
+  final UpdateBookUsecase updateBookUsecase;
+  BookBloc(
+      this.bookUseCase,
+      this.getAllBooksUsecase,
+      this.deleteBookUsecase,
+      this.updateBookUsecase,
+      this.singleBookUsecase,
+      this.getBooksByCategory,
+      this.searchUsecase)
       : super(BookInitial()) {
     on<AddBookEvent>((event, emit) async {
       emit(BookLoading());
@@ -52,7 +63,17 @@ class BookBloc extends Bloc<BookEvent, BookState> {
         emit(SingleBookLoaded(book));
       });
     });
+    on<UpdateEvent>((event, emit) async {
+      emit(BookLoading());
+      final result =
+          await updateBookUsecase(UpdateParams(event.id, event.book));
 
+      result.fold((l) {
+        emit(BookError(message: l.message));
+      }, (successMessage) {
+        emit(BookUpdated(message: successMessage));
+      });
+    });
     on<GetBooksByCategory>((event, emit) async {
       emit(BookLoading());
 
@@ -79,6 +100,14 @@ class BookBloc extends Bloc<BookEvent, BookState> {
 
     on<ResetBookStateEvent>((event, emit) async {
       emit(BookInitial());
+    });
+
+    on<SearchEvent>((event, emit) async {
+      emit(BookLoading());
+      final books = await searchUsecase(SearchParams(event.title));
+
+      books.fold((l) => emit(BookError(message: 'No books found')),
+          (books) => emit(SearchLoad(books)));
     });
   }
 }

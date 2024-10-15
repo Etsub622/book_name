@@ -28,7 +28,7 @@ class BookAdded extends BookState {
 
 class BookDeleted extends BookState {
   final String message;
-  BookDeleted( this.message);
+  BookDeleted(this.message);
 }
 
 class BookUpdated extends BookState {
@@ -36,3 +36,7 @@ class BookUpdated extends BookState {
   BookUpdated({required this.message});
 }
 
+class SearchLoad extends BookState {
+  final List<BookEntity> books;
+  SearchLoad(this.books);
+}

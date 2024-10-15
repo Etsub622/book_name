@@ -47,7 +47,7 @@ class _LogInState extends State<LogIn> {
             final snac = snackBar('User logged in successfully');
             ScaffoldMessenger.of(context).showSnackBar(snac);
             Future.delayed(const Duration(seconds: 2), () {
-              context.go(AppPath.home);
+              context.go(AppPath.navbar);
             });
           } else if (state is AuthErrorState) {
             final snac = errorsnackBar('Log in failed, try again');

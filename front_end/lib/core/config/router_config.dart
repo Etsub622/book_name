@@ -3,8 +3,11 @@ import 'package:front_end/core/common_widget.dart/circular_indicator.dart';
 import 'package:front_end/core/config/app_path.dart';
 import 'package:front_end/features/book/presentation/pages/add_books.dart';
 import 'package:front_end/features/book/presentation/pages/book_detail.dart';
+import 'package:front_end/features/book/presentation/pages/book_home.dart';
 import 'package:front_end/features/book/presentation/pages/book_listing.dart';
 import 'package:front_end/features/book/presentation/pages/settings.dart';
+import 'package:front_end/features/book/presentation/pages/update.dart';
+import 'package:front_end/features/book/presentation/widget/nav_bar.dart';
 import 'package:front_end/features/onboarding/presentation/pages/home.dart';
 import 'package:front_end/features/onboarding/presentation/pages/login.dart';
 import 'package:front_end/features/onboarding/presentation/pages/onboard1.dart';
@@ -23,7 +26,7 @@ class AppRouter {
   }
 
   static final GoRouter router = GoRouter(
-    initialLocation: '/',  
+    initialLocation: '/',
     routes: <GoRoute>[
       GoRoute(
         path: '/',
@@ -32,14 +35,13 @@ class AppRouter {
             future: _getToken(),
             builder: (context, snapshot) {
               if (snapshot.connectionState == ConnectionState.waiting) {
-            
-                return  Center(child: CircularIndicator());
+                return Center(child: CircularIndicator());
               }
               final token = snapshot.data;
               if (token != null && token.isNotEmpty) {
-                return HomePage();  
+                return BottomNavBAr();
               } else {
-                return LogIn(); 
+                return Onboard1();
               }
             },
           );
@@ -81,24 +83,29 @@ class AppRouter {
         path: AppPath.addBooks,
         builder: (context, state) => AddBooksPages(),
       ),
-
       GoRoute(
         path: AppPath.getBooks,
         builder: (context, state) => BookListing(),
       ),
       GoRoute(
         path: AppPath.settings,
-        builder: (context, state) => Setting(),
+        builder: (context, state) => BookHome(),
       ),
-       GoRoute(
-      path: AppPath.getBooksByCategory,
-      builder: (context, state) {
-        final category = state.extra as String; // Fetch the passed category
-        return BookListing(category: category); // Pass the category to BookListing
-      },
-    ),
-     
-     
+      GoRoute(
+        path: AppPath.getBooksByCategory,
+        builder: (context, state) {
+          final category = state.extra as String;
+          return BookListing(category: category);
+        },
+      ),
+      GoRoute(
+        path: AppPath.bookHome,
+        builder: (context, state) => BookHome(),
+      ),
+      GoRoute(
+        path: AppPath.navbar,
+        builder: (context, state) => BottomNavBAr(),
+      ),
     ],
   );
 }

@@ -19,7 +19,7 @@ class CardPage extends StatelessWidget {
     return Card(
       color: Colors.white,
       child: SizedBox(
-        height: 400,
+        height: 300,
         child: Column(
           children: [
             Expanded(
@@ -36,9 +36,7 @@ class CardPage extends StatelessWidget {
                     topRight: Radius.circular(20),
                   ),
                   child: Image.network(
-                    image.isNotEmpty
-                        ? image[0]
-                        : '', // Ensure image list is not empty
+                    image.isNotEmpty ? image[0] : '',
                     fit: BoxFit.cover,
                     width: double.infinity,
                   ),

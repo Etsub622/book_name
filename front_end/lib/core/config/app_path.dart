@@ -12,4 +12,6 @@ class AppPath {
   static const settings = '/settings';
   static const bookDetail = '/bookDetail';
   static const String getBooksByCategory = '/books/category';
+  static const bookHome = '/bookhome';
+  static const navbar = '/navbar';
 }

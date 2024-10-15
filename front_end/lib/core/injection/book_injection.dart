@@ -7,20 +7,25 @@ import 'package:front_end/features/book/domain/usecase/book_list_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/book_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/delete_book_usecase.dart';
 import 'package:front_end/features/book/domain/usecase/get_single_book_usecase.dart';
+import 'package:front_end/features/book/domain/usecase/search_usecase.dart';
+import 'package:front_end/features/book/domain/usecase/update_usecase.dart';
 import 'package:front_end/features/book/presentation/bloc/bloc/book_bloc.dart';
 
 class BookInjection {
   init() {
     // Bloc
-    sl.registerFactory<BookBloc>(() => BookBloc(sl(), sl(), sl(), sl(),sl()));
+    sl.registerFactory<BookBloc>(() => BookBloc(sl(), sl(), sl(), sl(),sl(),sl(),sl()));
 
     // UseCase
     sl.registerLazySingleton<GetAllBooksUsecase>(
         () => GetAllBooksUsecase(sl()));
+     sl.registerLazySingleton<UpdateBookUsecase>(
+        () => UpdateBookUsecase(sl()));    
     sl.registerLazySingleton<GetBookByCategoryUsecase>(
         () => GetBookByCategoryUsecase(sl()));
         
     sl.registerLazySingleton<BookUseCase>(() => BookUseCase(sl()));
+    sl.registerLazySingleton<SearchUsecase>(() => SearchUsecase(sl()));
     sl.registerLazySingleton<GetSingleBookUsecase>(
         () => GetSingleBookUsecase(sl()));
     sl.registerLazySingleton<DeleteBookUsecase>(() => DeleteBookUsecase(sl()));

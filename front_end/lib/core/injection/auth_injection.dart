@@ -11,7 +11,7 @@ import 'package:front_end/features/onboarding/presentation/bloc/bloc/auth_bloc.d
 class AuthInjection {
   init() {
     // Bloc
-    sl.registerFactory<AuthBloc>(() => AuthBloc(sl(), sl(),sl()));
+    sl.registerFactory<AuthBloc>(() => AuthBloc(sl(), sl(), sl(), sl()));
 
     // UseCase
     sl.registerLazySingleton<SignUpUseCase>(() => SignUpUseCase(sl()));

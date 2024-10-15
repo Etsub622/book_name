@@ -18,8 +18,6 @@ class ChatInitiateRepoImpl extends ChatInitiateRepo {
     if (await networkInfo.isConnected) {
       try {
         final response = await chatRemoteDataSource.initiateChat(userId);
-        print('repo impl,,,,,,,,,,,,,,');
-        print(response);
         return Right(response);
       } on ServerException {
         return Left(ServerFailure(message: 'Server Failure'));

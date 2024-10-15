@@ -8,6 +8,7 @@ import { UpdateBookDto } from './dto/update-book.dto';
 import { User } from 'src/auth/schemas/auth.schema';
 import { query } from 'express';
 import { Query } from 'express-serve-static-core';
+import { SearchDto } from './dto/search.dto';
 
 @Injectable()
 export class BookService {
@@ -24,16 +25,20 @@ export class BookService {
 
 
         const filter:any = {};
-        if(query.keyword){
+        if (query.keyword) {
             filter.$or = [
-                {
-                title:{$regex:query.keyword,$options:'i',},
-                description:{$regex:query.keyword,$options:'i',}}];
+                { title: { $regex: query.keyword, $options: 'i' } },
+                { author: { $regex: query.keyword, $options: 'i' } },
+                { description: { $regex: query.keyword, $options: 'i' } }
+            ];
         }
-       
-
+    
         const books = await this.bookModel.find(filter).exec();
-        return books;}
+        return books;
+
+        
+    }
+    
 
 
 
@@ -74,4 +79,6 @@ export class BookService {
         const books = await this.bookModel.find({category:category});
         return books;
     }
+
+  
 }

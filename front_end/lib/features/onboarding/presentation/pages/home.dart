@@ -75,47 +75,6 @@ class _HomePageState extends State<HomePage> {
                 _initiateChat(context);
               },
               child: const Text('Initiate Chat')),
-          SizedBox(height: 20.h),
-          ElevatedButton(
-              onPressed: () {
-                context.go(AppPath.addBooks);
-              },
-              child: const Text('Add books')),
-          SizedBox(height: 20.h),
-          Row(
-            children: [
-              ElevatedButton(
-                onPressed: () {
-                  context.go(AppPath.getBooks); 
-                },
-                child: const Text('All Books'),
-              ),
-              SizedBox(width: 15.w),
-              ElevatedButton(
-                onPressed: () {
-                  context.go(AppPath.getBooksByCategory,
-                      extra: 'comedy'); 
-                },
-                child: const Text('Comedy'),
-              ),
-              SizedBox(width: 15.w),
-              ElevatedButton(
-                onPressed: () {
-                  context.go(AppPath.getBooksByCategory,
-                      extra: 'fantasy'); 
-                },
-                child: const Text('Fantasy'),
-              ),
-              SizedBox(width: 15.w),
-              ElevatedButton(
-                onPressed: () {
-                  context.go(AppPath.getBooksByCategory,
-                      extra: 'crime'); 
-                },
-                child: const Text('Crime'),
-              ),
-            ],
-          )
         ],
       ),
     );

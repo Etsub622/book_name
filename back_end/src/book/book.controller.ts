@@ -6,6 +6,8 @@ import { CreateBookDto } from './dto/create-book.dto';
 import { UpdateBookDto } from './dto/update-book.dto';
 import { AuthGuard } from '@nestjs/passport';
 import {Query as ExpressQuery} from 'express-serve-static-core';
+import { query } from 'express';
+import { SearchDto } from './dto/search.dto';
 
 @Controller('book')
 export class BookController {
@@ -28,19 +30,25 @@ export class BookController {
 
         return this.bookService.createNewBook(createBookDto); }
         
-    @Put(':/id')
-    async updateBookById(@Param('id') id:string,@Body()updateBookDto:UpdateBookDto):Promise<Book>{
-        return this.bookService.updateBookById(id,updateBookDto);}
+        @Put(':id')  
+        async updateBookById(
+          @Param('id') id: string,
+          @Body() updateBookDto: UpdateBookDto,
+        ): Promise<Book> {
+          return this.bookService.updateBookById(id, updateBookDto);
+        }
 
     @Get('category/:category')  
     async getBookByCategory(@Param('category') category:string):Promise<Book[]>{
         return this.bookService.getBookByCategory(category);
     }  
     
-    @Delete(':/id') 
+    @Delete(':id') 
     async deleteById(@Param('id') id:string):Promise<void>{
        return this.bookService.deleteById(id) 
     }  
+
+   
 }
 
 

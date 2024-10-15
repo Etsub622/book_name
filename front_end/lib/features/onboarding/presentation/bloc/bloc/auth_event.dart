@@ -15,6 +15,9 @@ final class LogInEvent extends AuthEvent {
   const LogInEvent({required this.logInEntity});
 }
 
-final class LogOutEvent extends AuthEvent {
+final class LogOutEvent extends AuthEvent {}
 
+final class DeleteBookEvent extends AuthEvent {
+  final String id;
+  DeleteBookEvent(this.id);
 }

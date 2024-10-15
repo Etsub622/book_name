@@ -9,18 +9,15 @@ import 'package:go_router/go_router.dart';
 
 class BookListing extends StatelessWidget {
   final String? category;
-  const BookListing({super.key,this.category});
+  const BookListing({super.key, this.category});
 
   @override
   Widget build(BuildContext context) {
-    if(category == null){
+    if (category == null) {
       context.read<BookBloc>().add(const GetAllBooksEvent());
-
-    }else{
+    } else {
       context.read<BookBloc>().add(GetBooksByCategory(category!));
-
     }
-   
 
     return Scaffold(
       body: SafeArea(
@@ -32,6 +29,11 @@ class BookListing extends StatelessWidget {
                 padding: EdgeInsets.all(16.0),
                 child: Row(
                   children: [
+                    InkWell(
+                        onTap: () {
+                          context.go(AppPath.navbar);
+                        },
+                        child: Icon(Icons.arrow_back_ios)),
                     Text(
                       'Available books',
                       style: TextStyle(
@@ -40,11 +42,6 @@ class BookListing extends StatelessWidget {
                         fontSize: 22,
                       ),
                     ),
-                    GestureDetector(
-                        onTap: () {
-                          context.go(AppPath.settings);
-                        },
-                        child: Icon(Icons.settings)),
                   ],
                 ),
               ),
@@ -72,12 +69,13 @@ Widget buildProductList() {
       } else if (state is BookLoading) {
         return const Center(child: CircularIndicator());
       } else if (state is BookLoaded) {
+        final Books = state.books.reversed.toList();
         return ListView.builder(
           shrinkWrap: true,
           physics: const NeverScrollableScrollPhysics(),
           itemCount: state.books.length,
           itemBuilder: (context, idx) {
-            final book = state.books[idx];
+            final book = Books[idx];
             return GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
@@ -98,7 +96,7 @@ Widget buildProductList() {
           },
         );
       } else {
-        return const Center(child: Text('Error loading books'));
+        return const Center(child: Text('No books found'));
       }
     },
   );

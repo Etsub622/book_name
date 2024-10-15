@@ -8,4 +8,6 @@ abstract class BookRepository {
   Future<Either<Failure, BookEntity>> getSingleBook(String id);
   Future<Either<Failure, String>> deleteBook(String id);
   Future<Either<Failure, List<BookEntity>>> getBookByCategory(String id);
+  Future<Either<Failure, List<BookEntity>>> search(String title);
+  Future<Either<Failure, String>> update(BookEntity bookEntity, String id);
 }

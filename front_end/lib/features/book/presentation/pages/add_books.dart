@@ -1,6 +1,5 @@
 import 'dart:convert';
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
@@ -9,7 +8,6 @@ import 'package:front_end/core/common_widget.dart/snack_bar.dart';
 import 'package:front_end/core/config/app_path.dart';
 import 'package:front_end/features/book/data/model/book_model.dart';
 import 'package:front_end/features/book/presentation/bloc/bloc/book_bloc.dart';
-import 'package:front_end/features/onboarding/presentation/bloc/bloc/auth_bloc.dart';
 import 'package:front_end/features/onboarding/presentation/widget/button.dart';
 import 'package:front_end/features/onboarding/presentation/widget/form_field.dart';
 import 'package:go_router/go_router.dart';
@@ -112,7 +110,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
           ScaffoldMessenger.of(context).showSnackBar(snack);
 
           Future.delayed(const Duration(seconds: 2), () {
-            context.go(AppPath.getBooks);
+            context.go(AppPath.navbar);
           });
         } else if (state is BookError) {
           final snack = errorsnackBar('Book is not added, try again');
@@ -140,12 +138,6 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                     color: (Color(0xff800080)),
                   )),
             ),
-            GestureDetector(
-              onTap: () {
-                context.go(AppPath.getBooks);
-              },
-              child: Icon(Icons.arrow_back_ios),
-            ),
           ]),
         ),
         body: Padding(
@@ -154,7 +146,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text('title'),
+                const Text('title'),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -162,7 +154,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 15.h,
                 ),
-                Text('author'),
+                const Text('author'),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -170,7 +162,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 15.h,
                 ),
-                Text('description'),
+                const Text('description'),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -181,7 +173,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 15.h,
                 ),
-                Text('price'),
+                const Text('price'),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -189,7 +181,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Text('Category'),
+                const Text('Category'),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField<String>(
@@ -202,8 +194,8 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                           width: 1.0),
                       borderRadius: BorderRadius.circular(15),
                     ),
-                    buttonText: Text('Book Category'),
-                    title: Text('Book Category'),
+                    buttonText: const Text('Book Category'),
+                    title: const Text('Book Category'),
                     selectedColor: Colors.blue,
                     buttonIcon: const Icon(
                       Icons.arrow_drop_down,
@@ -220,7 +212,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                           selectedCategories.remove(value);
                         });
                       },
-                      textStyle: TextStyle(color: Colors.black),
+                      textStyle: const TextStyle(color: Colors.black),
                       chipColor: Colors.white,
                     ),
                     searchable: true,
@@ -233,7 +225,7 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 20.h,
                 ),
-                Text('select images'),
+                const Text('select images'),
                 SizedBox(
                   height: 10.h,
                 ),
@@ -241,8 +233,8 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                     onTap: () {
                       _pickImage(ImageSource.gallery);
                     },
-                    child: Padding(
-                      padding: const EdgeInsets.only(left: 15.0),
+                    child: const Padding(
+                      padding: EdgeInsets.only(left: 15.0),
                       child: Icon(
                         Icons.add_a_photo,
                         size: 33,
