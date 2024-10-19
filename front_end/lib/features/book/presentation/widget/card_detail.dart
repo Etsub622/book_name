@@ -22,65 +22,74 @@ class CardDetailPage extends StatelessWidget {
     return Card(
       color: Colors.white,
       child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          SizedBox(
-            height: 250,
-            child: PageView.builder(
-              itemCount: images.length,
-              itemBuilder: (context, index) {
-                return ClipRRect(
-                  borderRadius: const BorderRadius.only(
-                    topLeft: Radius.circular(20),
-                    topRight: Radius.circular(20),
-                  ),
-                  child: Image.network(
-                    images[index],
-                    fit: BoxFit.cover,
-                    width: double.infinity,
-                  ),
-                );
-              },
-            ),
+          Row(
+            children: [
+              SizedBox(
+                height: 200.h,
+                width: 200.w,
+                child: PageView.builder(
+                  itemCount: images.length,
+                  itemBuilder: (context, index) {
+                    return ClipRRect(
+                      borderRadius: const BorderRadius.only(
+                        topLeft: Radius.circular(20),
+                        topRight: Radius.circular(20),
+                      ),
+                      child: Image.network(
+                        images[index],
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      ),
+                    );
+                  },
+                ),
+              ),
+              SizedBox(width: 20.w),
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        color: Color(0XFF3E3E3E),
+                        fontWeight: FontWeight.w600,
+                        fontSize: 22,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      'By $author',
+                      style: const TextStyle(
+                        fontFamily: 'Poppins',
+                        fontSize: 18,
+                      ),
+                    ),
+                    const SizedBox(height: 5),
+                    Text(
+                      '\$$price',
+                      style: const TextStyle(
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Poppins',
+                        fontSize: 20,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
+          SizedBox(height: 10.w),
           Padding(
-            padding: const EdgeInsets.all(10.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  title,
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    color: Color(0XFF3E3E3E),
-                    fontWeight: FontWeight.w600,
-                    fontSize: 22,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  'By $author',
-                  style: const TextStyle(
-                    fontFamily: 'Poppins',
-                    fontSize: 18,
-                  ),
-                ),
-                const SizedBox(height: 10),
-                Text(
-                  '\$$price',
-                  style: const TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontFamily: 'Poppins',
-                    fontSize: 20,
-                  ),
-                ),
-                const SizedBox(height: 15),
-                Text(
-                  description,
-                  style: const TextStyle(
-                    fontSize: 16,
-                  ),
-                ),
-              ],
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Text(
+              description,
+              style: const TextStyle(fontSize: 16),
+              maxLines: 3,
+              overflow: TextOverflow.ellipsis,
             ),
           ),
         ],

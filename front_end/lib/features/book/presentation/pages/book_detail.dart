@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front_end/core/config/app_path.dart';
 import 'package:front_end/features/book/domain/entity/book_entity.dart';
 import 'package:front_end/features/book/presentation/bloc/bloc/book_bloc.dart';
@@ -24,12 +25,6 @@ class _BookDetailState extends State<BookDetail> {
     context.read<FavoritesBloc>().add(LoadFavoritesEvent());
   }
 
-  @override
-  void dispose() {
-    context.read<BookBloc>().add(ResetBookStateEvent());
-    super.dispose();
-  }
-
   List<String> _convertToList(dynamic value) {
     if (value is Iterable) {
       return List<String>.from(value.map((item) => item.toString()));
@@ -48,7 +43,7 @@ class _BookDetailState extends State<BookDetail> {
         leading: IconButton(
           icon: const Icon(Icons.arrow_back_ios),
           onPressed: () {
-            context.pop(context);
+            GoRouter.of(context).go(AppPath.bookHome);
           },
         ),
       ),
@@ -59,7 +54,7 @@ class _BookDetailState extends State<BookDetail> {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
               );
-              GoRouter.of(context).go(AppPath.bookHome);
+              GoRouter.of(context).go(AppPath.navbar);
             } else if (state is BookError) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(content: Text(state.message)),
@@ -87,75 +82,61 @@ class _BookDetailState extends State<BookDetail> {
                       author: book.author,
                       description: book.description,
                     ),
-                    const SizedBox(height: 20),
+                    SizedBox(height: 20.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        GestureDetector(
-                          onTap: () async {
-                            final result = await Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => UpdatePage(
-                                  title: book.title,
-                                  author: book.author,
-                                  description: book.description,
-                                  price: book.price,
-                                  imageUrl:
-                                      book.imageUrl, 
-                                  category:
-                                      book.category, 
-                                  onUpdate: (updatedBookMap) {
-                                    final updatedBook = BookEntity(
-                                      id: book.id,
-                                      title: updatedBookMap['title'] as String,
-                                      author:
-                                          updatedBookMap['author'] as String,
-                                      description: updatedBookMap['description']
-                                          as String,
-                                      price: updatedBookMap['price'] as num,
-                                      imageUrl: _convertToList(
-                                          updatedBookMap['imageUrl']),
-                                      category: _convertToList(
-                                          updatedBookMap['category']),
-                                    );
-                                    context
-                                        .read<BookBloc>()
-                                        .add(UpdateEvent(book.id, updatedBook));
-                                  },
+                        IconButton(
+                            onPressed: () async {
+                              final result = await Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => UpdatePage(
+                                    title: book.title,
+                                    author: book.author,
+                                    description: book.description,
+                                    price: book.price,
+                                    imageUrl: book.imageUrl,
+                                    category: book.category,
+                                    onUpdate: (updatedBookMap) {
+                                      final updatedBook = BookEntity(
+                                        id: book.id,
+                                        title:
+                                            updatedBookMap['title'] as String,
+                                        author:
+                                            updatedBookMap['author'] as String,
+                                        description:
+                                            updatedBookMap['description']
+                                                as String,
+                                        price: updatedBookMap['price'] as num,
+                                        imageUrl: _convertToList(
+                                            updatedBookMap['imageUrl']),
+                                        category: _convertToList(
+                                            updatedBookMap['category']),
+                                      );
+                                      context.read<BookBloc>().add(
+                                          UpdateEvent(book.id, updatedBook));
+                                    },
+                                  ),
                                 ),
-                              ),
-                            );
+                              );
 
-                            if (result == true) {
-                              context
-                                  .read<BookBloc>()
-                                  .add(GetSingleBookEvent(book.id));
-                            }
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: const Color(0XFF3F51F3),
-                                borderRadius: BorderRadius.circular(10)),
-                            width: 150,
-                            height: 50,
-                            child: const Center(
-                                child: Text('UPDATE',
-                                    style: TextStyle(
-                                        fontWeight: FontWeight.w400,
-                                        color: Colors.white))),
-                          ),
-                        ),
-                        ElevatedButton(
-                          onPressed: () {
-                            _showDeleteDialog(context);
-                          },
-                          child: const Text('Delete'),
-                        ),
+                              if (result == true) {
+                                context
+                                    .read<BookBloc>()
+                                    .add(GetSingleBookEvent(book.id));
+                              }
+                            },
+                            icon: Icon(Icons.edit, color: Colors.brown[300])),
+                        IconButton(
+                            onPressed: () {
+                              _showDeleteDialog(context);
+                            },
+                            icon: Icon(Icons.delete, color: Colors.brown[300])),
                         IconButton(
                           icon: Icon(
                             isFavorite ? Icons.favorite : Icons.favorite_border,
-                            color: isFavorite ? Colors.red : null,
+                            color: isFavorite ? Colors.red : Colors.brown[300],
                           ),
                           onPressed: () {
                             if (isFavorite) {
@@ -170,6 +151,19 @@ class _BookDetailState extends State<BookDetail> {
                           },
                         ),
                       ],
+                    ),
+                    SizedBox(height: 25.h),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 110, 84, 75),
+                          borderRadius: BorderRadius.circular(10)),
+                      width: double.infinity,
+                      height: 50,
+                      child: const Center(
+                          child: Text('Contact the seller',
+                              style: TextStyle(
+                                  fontWeight: FontWeight.w400,
+                                  color: Colors.white))),
                     ),
                   ],
                 ),
@@ -195,14 +189,15 @@ class _BookDetailState extends State<BookDetail> {
           actions: <Widget>[
             TextButton(
               onPressed: () {
-                context.go(AppPath.navbar);
+                Navigator.of(context).pop();
               },
               child: const Text('Cancel'),
             ),
             TextButton(
               onPressed: () {
                 context.read<BookBloc>().add(DeleteBookEvent(widget.id));
-                Navigator.of(context).pop();
+
+                context.go(AppPath.navbar);
               },
               child: const Text(
                 'Delete',

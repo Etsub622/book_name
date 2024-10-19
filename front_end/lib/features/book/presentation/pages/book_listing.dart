@@ -51,12 +51,6 @@ class BookListing extends StatelessWidget {
           ),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          context.go(AppPath.addBooks);
-        },
-        child: const Icon(Icons.add),
-      ),
     );
   }
 }
