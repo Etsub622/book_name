@@ -86,19 +86,19 @@ class _SignUPState extends State<SignUP> {
                   child: Icon(
                     Icons.keyboard_arrow_left_outlined,
                     size: 26.sp,
-                    color: (Color(0xff800080)),
+                    color: (Color(0xff301934)),
                   ),
                 ),
               ),
               SizedBox(
                 height: 40.h,
               ),
-              Text(
-                'Sign Up',
-                style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: (Color(0xff800080))),
+              Center(
+                child: Text('Sign Up',
+                    style: TextStyle(
+                        fontSize: 20.sp,
+                        fontWeight: FontWeight.bold,
+                        color: (Color(0xff301934)))),
               ),
               SizedBox(
                 height: 30.h,
@@ -138,7 +138,7 @@ class _SignUPState extends State<SignUP> {
                     _signUp(context);
                   }),
               SizedBox(
-                height: 40.h,
+                height: 15.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

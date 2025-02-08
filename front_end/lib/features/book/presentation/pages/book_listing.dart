@@ -85,10 +85,15 @@ Widget buildProductList() {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return BookDetail(id: book.id);
+                      return BookDetail(
+                          id: book.id, category: book.category[0]);
                     },
                   ),
-                );
+                ).then((category) {
+                  if (category != null) {
+                    context.read<BookBloc>().add(GetBooksByCategory(category));
+                  }
+                });
               },
               child: Wrap(
                 spacing: 10.w,

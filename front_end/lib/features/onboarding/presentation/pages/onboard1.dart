@@ -27,7 +27,7 @@ class Onboard1 extends StatelessWidget {
             CustomButton(
               text: 'Skip',
               onTap: () {
-                context.go(AppPath.onboard2);
+                context.go(AppPath.login);
               },
             ),
             CustomButton(

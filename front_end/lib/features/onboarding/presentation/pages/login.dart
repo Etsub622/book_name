@@ -68,7 +68,7 @@ class _LogInState extends State<LogIn> {
   Widget _build(BuildContext context) {
     return Material(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0),
+        padding: const EdgeInsets.only(left: 20.0, right: 20.0, top: 20.0),
         child: Form(
           key: _key,
           child: Column(
@@ -81,22 +81,24 @@ class _LogInState extends State<LogIn> {
                   child: Icon(
                     Icons.keyboard_arrow_left_outlined,
                     size: 26.sp,
-                    color: (Color(0xff800080)),
+                    color: Color(0xff301934),
                   ),
                 ),
               ),
               SizedBox(
-                height: 40.h,
+                height: 20.h,
               ),
-              Text(
-                'Log In',
-                style: TextStyle(
-                    fontSize: 20.sp,
-                    fontWeight: FontWeight.bold,
-                    color: (Color(0xff800080))),
+              Center(
+                child: Text(
+                  'Log In',
+                  style: TextStyle(
+                      fontSize: 20.sp,
+                      fontWeight: FontWeight.bold,
+                      color: (Color(0xff301934))),
+                ),
               ),
               SizedBox(
-                height: 30.h,
+                height: 40.h,
               ),
               CustomFormField(
                 controller: _emailController,
@@ -119,7 +121,7 @@ class _LogInState extends State<LogIn> {
                     _logIn(context);
                   }),
               SizedBox(
-                height: 40.h,
+                height: 15.h,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,

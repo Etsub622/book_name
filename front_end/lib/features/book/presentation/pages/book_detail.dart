@@ -11,7 +11,8 @@ import 'package:go_router/go_router.dart';
 
 class BookDetail extends StatefulWidget {
   final String id;
-  const BookDetail({super.key, required this.id});
+  final String category;
+  const BookDetail({super.key, required this.id, required this.category});
 
   @override
   State<BookDetail> createState() => _BookDetailState();
@@ -39,11 +40,20 @@ class _BookDetailState extends State<BookDetail> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Book Detail'),
+        title: const Text('Book Detail',
+            style: TextStyle(
+                color: Color(0xff301934),
+                fontSize: 20,
+                fontFamily: 'Poppins',
+                fontWeight: FontWeight.w500)),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back_ios),
+          icon: const Icon(
+            Icons.arrow_back_ios,
+            size: 24,
+            color: Color(0xff301934),
+          ),
           onPressed: () {
-            GoRouter.of(context).go(AppPath.bookHome);
+            Navigator.pop(context, widget.category);
           },
         ),
       ),
@@ -81,8 +91,9 @@ class _BookDetailState extends State<BookDetail> {
                       price: book.price,
                       author: book.author,
                       description: book.description,
+                      categories: book.category,
                     ),
-                    SizedBox(height: 20.h),
+                    SizedBox(height: 10.h),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [

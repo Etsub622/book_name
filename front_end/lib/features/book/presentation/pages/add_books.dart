@@ -135,7 +135,9 @@ class _AddBooksPagesState extends State<AddBooksPages> {
               child: Text('Add Books',
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: (Color(0xff800080)),
+                    color: (Color(0xff301934)),
+                    fontSize: 20.sp,
+                    fontFamily: 'Poppins',
                   )),
             ),
           ]),
@@ -146,15 +148,28 @@ class _AddBooksPagesState extends State<AddBooksPages> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text('title'),
+                Text('title',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 SizedBox(
                   height: 7.h,
                 ),
-                CustomFormField(text: 'title', controller: titleController),
+                CustomFormField(
+                  text: 'title',
+                  controller: titleController,
+                ),
                 SizedBox(
                   height: 15.h,
                 ),
-                const Text('author'),
+                Text('author',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -162,7 +177,12 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 15.h,
                 ),
-                const Text('description'),
+                Text('description',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -173,7 +193,12 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 15.h,
                 ),
-                const Text('price'),
+                Text('price',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 SizedBox(
                   height: 7.h,
                 ),
@@ -181,7 +206,12 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                 SizedBox(
                   height: 20.h,
                 ),
-                const Text('Category'),
+                Text('Category',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: MultiSelectDialogField<String>(
@@ -220,12 +250,14 @@ class _AddBooksPagesState extends State<AddBooksPages> {
                   ),
                 ),
                 SizedBox(
-                  height: 7.h,
-                ),
-                SizedBox(
                   height: 20.h,
                 ),
-                const Text('select images'),
+                Text('select images',
+                    style: TextStyle(
+                      fontWeight: FontWeight.w400,
+                      fontFamily: 'Poppins',
+                      fontSize: 15.sp,
+                    )),
                 SizedBox(
                   height: 10.h,
                 ),

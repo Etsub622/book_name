@@ -20,7 +20,7 @@ class _BottomNavBArState extends State<BottomNavBAr> {
     FavoritesPage(),
     SearchPage(),
     AddBooksPages(),
-    HomePage(),
+    // HomePage(),
   ];
 
   @override
@@ -42,7 +42,7 @@ class _BottomNavBArState extends State<BottomNavBAr> {
               icon: Icon(Icons.favorite), label: 'Favorite'),
           BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
-          BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Setting'),
+          // BottomNavigationBarItem(icon: Icon(Icons.logout), label: 'logout'),
         ],
       ),
     );

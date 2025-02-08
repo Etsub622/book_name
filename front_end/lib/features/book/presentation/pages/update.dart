@@ -59,7 +59,7 @@ class _UpdatePageState extends State<UpdatePage> {
   }
 
   void UpdateBook() async {
-    await _uploadImages(); 
+    await _uploadImages();
     final Map<String, Object> updatedbook = {
       'title': titleController.text,
       'author': authorController.text,
@@ -68,7 +68,7 @@ class _UpdatePageState extends State<UpdatePage> {
       'price': num.parse(priceController.text),
       'category': selectedCategories,
     };
-    widget.onUpdate(updatedbook); 
+    widget.onUpdate(updatedbook);
   }
 
   List<String> categoryOption = const [
@@ -172,6 +172,8 @@ class _UpdatePageState extends State<UpdatePage> {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         color: Color(0XFF3E3E3E),
+                        fontSize: 20,
+                        fontFamily: 'Poppins',
                       ),
                     )
                   ],
@@ -337,7 +339,7 @@ class _UpdatePageState extends State<UpdatePage> {
                   onTap: UpdateBook,
                   child: Container(
                     decoration: BoxDecoration(
-                        color: const Color(0XFF3F51F3),
+                        color: Color.fromARGB(255, 110, 84, 75),
                         borderRadius: BorderRadius.circular(10)),
                     width: double.infinity,
                     height: 45,

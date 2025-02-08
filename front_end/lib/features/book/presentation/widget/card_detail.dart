@@ -7,6 +7,7 @@ class CardDetailPage extends StatelessWidget {
   final num price;
   final String author;
   final String description;
+  final List<String> categories;
 
   const CardDetailPage({
     Key? key,
@@ -15,84 +16,115 @@ class CardDetailPage extends StatelessWidget {
     required this.price,
     required this.author,
     required this.description,
+    required this.categories,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Card(
-      color: Colors.white,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Row(
-            children: [
-              SizedBox(
-                height: 200.h,
-                width: 200.w,
+      elevation: 3,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(20.r),
+      ),
+      color: const Color(0xFFFDFCF8),
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center,
+          children: [
+            ClipRRect(
+              borderRadius: BorderRadius.circular(20.r),
+              child: SizedBox(
+                height: 250.h,
+                width: 180.w,
                 child: PageView.builder(
                   itemCount: images.length,
                   itemBuilder: (context, index) {
-                    return ClipRRect(
-                      borderRadius: const BorderRadius.only(
-                        topLeft: Radius.circular(20),
-                        topRight: Radius.circular(20),
-                      ),
-                      child: Image.network(
-                        images[index],
-                        fit: BoxFit.cover,
-                        width: double.infinity,
-                      ),
+                    return Image.network(
+                      images[index],
+                      fit: BoxFit.cover,
+                      width: double.infinity,
                     );
                   },
                 ),
               ),
-              SizedBox(width: 20.w),
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Color(0XFF3E3E3E),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 22,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      'By $author',
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        fontSize: 18,
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      '\$$price',
-                      style: const TextStyle(
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Poppins',
-                        fontSize: 20,
-                      ),
-                    ),
-                  ],
-                ),
+            ),
+            SizedBox(height: 15.h),
+            Text(
+              title,
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                color: const Color(0xff301934),
+                fontWeight: FontWeight.w600,
+                fontSize: 23.sp,
               ),
-            ],
-          ),
-          SizedBox(height: 10.w),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 15.0),
-            child: Text(
+              textAlign: TextAlign.center,
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              'By $author',
+              style: TextStyle(
+                fontFamily: 'Poppins',
+                fontSize: 16.sp,
+                color: Colors.black54,
+              ),
+            ),
+            SizedBox(height: 8.h),
+            Text(
+              '\$$price',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Poppins',
+                fontSize: 18.sp,
+                color: Colors.black,
+              ),
+            ),
+            SizedBox(height: 16.h),
+            Wrap(
+              spacing: 8.w,
+              runSpacing: 8.h,
+              children: categories.map((category) {
+                return Container(
+                  padding:
+                      EdgeInsets.symmetric(horizontal: 12.w, vertical: 6.h),
+                  decoration: BoxDecoration(
+                    color: const Color.fromARGB(255, 63, 45, 66),
+                    borderRadius: BorderRadius.circular(12.r),
+                  ),
+                  child: Text(
+                    category,
+                    style: TextStyle(
+                      fontSize: 14.sp,
+                      fontFamily: 'Poppins',
+                      color: const Color.fromARGB(255, 252, 238, 238),
+                    ),
+                  ),
+                );
+              }).toList(),
+            ),
+            SizedBox(height: 13.h),
+            Text('Book overview',
+                style: TextStyle(
+                  fontSize: 18.sp,
+                  fontFamily: 'Poppins',
+                  color: Colors.black,
+                  fontWeight: FontWeight.w600,
+                )),
+            SizedBox(height: 10.h),
+            Text(
               description,
-              style: const TextStyle(fontSize: 16),
+              style: TextStyle(
+                fontSize: 16.sp,
+                fontFamily: 'Poppins',
+                color: Colors.black87,
+              ),
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
+              textAlign: TextAlign.start,
             ),
-          ),
-        ],
+            SizedBox(height: 13.h),
+          ],
+        ),
       ),
     );
   }

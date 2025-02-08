@@ -4,12 +4,14 @@ import mongoose from "mongoose";
 import { User } from "src/auth/schemas/auth.schema";
 
 export enum Category{
-    'adventure' = 'adventure',
+    'travel' = 'travel',
     'comedy' = 'comedy',
-    'drama' = 'drama',
+    'romance' = 'romance',
     'fantasy' = 'fantasy',
     'crime' = 'crime',
-    'psychology'= 'psychology'
+    'psychology'= 'psychology',
+    'self help' = 'self help',
+
 }
 
 

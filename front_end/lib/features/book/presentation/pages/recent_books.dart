@@ -48,7 +48,7 @@ Widget buildProductList() {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return BookDetail(id: book.id);
+                      return BookDetail(id: book.id,category: book.category[0],);
                     },
                   ),
                 );

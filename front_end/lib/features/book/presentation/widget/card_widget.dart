@@ -60,11 +60,12 @@ class CardPage extends StatelessWidget {
                     ),
                   ),
                   Text(
-                    '\$$price',
+                    author,
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
                       color: Color(0XFF3E3E3E),
                       fontFamily: 'Poppins',
+                      fontSize: 15,
                     ),
                   ),
                 ],
