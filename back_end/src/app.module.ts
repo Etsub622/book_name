@@ -17,7 +17,7 @@ dotenv.config();
       envFilePath: '.env',
       isGlobal: true,
     }),
-    MongooseModule.forRoot(process.env.DB_URI),
+    MongooseModule.forRoot(process.env.MONGODB_URI),
     BookModule,
     AuthModule,
     OrderModule,

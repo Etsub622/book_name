@@ -18,7 +18,7 @@ class _BottomNavBArState extends State<BottomNavBAr> {
   final List<Widget> _screens = [
     BookHome(),
     FavoritesPage(),
-    // SearchPage(),
+    SearchPage(),
     AddBooksPages(),
     HomePage(),
   ];
@@ -40,7 +40,7 @@ class _BottomNavBArState extends State<BottomNavBAr> {
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(
               icon: Icon(Icons.favorite), label: 'Favorite'),
-          // BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
+          BottomNavigationBarItem(icon: Icon(Icons.search), label: 'Search'),
           BottomNavigationBarItem(icon: Icon(Icons.add), label: 'Add'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Setting'),
         ],

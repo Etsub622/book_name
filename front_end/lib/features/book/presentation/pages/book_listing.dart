@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:front_end/core/common_widget.dart/circular_indicator.dart';
 import 'package:front_end/core/config/app_path.dart';
 import 'package:front_end/features/book/presentation/bloc/bloc/book_bloc.dart';
@@ -26,15 +27,16 @@ class BookListing extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: EdgeInsets.all(16.0),
+                padding: const EdgeInsets.all(16.0),
                 child: Row(
                   children: [
                     InkWell(
                         onTap: () {
                           context.go(AppPath.navbar);
                         },
-                        child: Icon(Icons.arrow_back_ios)),
-                    Text(
+                        child: const Icon(Icons.arrow_back_ios, size: 23)),
+                    SizedBox(width: 10.w),
+                    const Text(
                       'Available books',
                       style: TextStyle(
                         color: Color(0XFF3E3E3E),
@@ -45,8 +47,11 @@ class BookListing extends StatelessWidget {
                   ],
                 ),
               ),
-              const SizedBox(height: 25),
-              buildProductList(),
+              SizedBox(height: 25.h),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                child: buildProductList(),
+              ),
             ],
           ),
         ),
@@ -64,9 +69,14 @@ Widget buildProductList() {
         return const Center(child: CircularIndicator());
       } else if (state is BookLoaded) {
         final Books = state.books.reversed.toList();
-        return ListView.builder(
+        return GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+            crossAxisCount: 2,
+            crossAxisSpacing: 20.w,
+            mainAxisSpacing: 20.h,
+            childAspectRatio: 0.75,
+          ),
           shrinkWrap: true,
-          physics: const NeverScrollableScrollPhysics(),
           itemCount: state.books.length,
           itemBuilder: (context, idx) {
             final book = Books[idx];
@@ -80,11 +90,17 @@ Widget buildProductList() {
                   ),
                 );
               },
-              child: CardPage(
-                image: book.imageUrl,
-                title: book.title,
-                price: book.price,
-                author: book.author,
+              child: Wrap(
+                spacing: 10.w,
+                runSpacing: 10.h,
+                children: [
+                  CardPage(
+                    image: book.imageUrl,
+                    title: book.title,
+                    price: book.price,
+                    author: book.author,
+                  ),
+                ],
               ),
             );
           },

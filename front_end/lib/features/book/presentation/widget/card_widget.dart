@@ -19,7 +19,8 @@ class CardPage extends StatelessWidget {
     return Card(
       color: Colors.white,
       child: SizedBox(
-        height: 300,
+        height: 200,
+        width: 180,
         child: Column(
           children: [
             Expanded(
@@ -38,6 +39,7 @@ class CardPage extends StatelessWidget {
                   child: Image.network(
                     image.isNotEmpty ? image[0] : '',
                     fit: BoxFit.cover,
+                    height: 100,
                     width: double.infinity,
                   ),
                 ),
@@ -46,22 +48,22 @@ class CardPage extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(10.0),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Expanded(
-                    child: Text(
-                      title,
-                      style: const TextStyle(
-                        fontFamily: 'Poppins',
-                        color: Color(0XFF3E3E3E),
-                        fontWeight: FontWeight.w600,
-                        fontSize: 22,
-                      ),
+                  Text(
+                    title,
+                    style: const TextStyle(
+                      fontFamily: 'Poppins',
+                      color: Color(0xff301934),
+                      fontWeight: FontWeight.w600,
+                      fontSize: 20,
                     ),
                   ),
                   Text(
                     '\$$price',
                     style: const TextStyle(
                       fontWeight: FontWeight.bold,
+                      color: Color(0XFF3E3E3E),
                       fontFamily: 'Poppins',
                     ),
                   ),

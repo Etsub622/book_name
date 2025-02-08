@@ -39,7 +39,7 @@ Widget buildProductList() {
         final recentBooks = state.books.reversed.take(5).toList();
 
         return ListView.builder(
-          
+          scrollDirection: Axis.horizontal,
           itemCount: recentBooks.length,
           itemBuilder: (context, idx) {
             final book = recentBooks[idx];
@@ -63,7 +63,7 @@ Widget buildProductList() {
           },
         );
       } else {
-        return const Center(child: Text('Error loading books'));
+        return const Center(child: Text('No books found'));
       }
     },
   );

@@ -51,13 +51,13 @@ class BookModel extends BookEntity {
   // Add the toEntity method to convert the model to an entity
   BookEntity toEntity() {
     return BookEntity(
-      id: this.id,
-      title: this.title,
-      author: this.author,
-      description: this.description,
-      imageUrl: this.imageUrl,
-      price: this.price,
-      category: this.category,
+      id: super.id,
+      title: super.title,
+      author: super.author,
+      description: super.description,
+      imageUrl: super.imageUrl,
+      price: super.price,
+      category: super.category,
     );
   }
 }

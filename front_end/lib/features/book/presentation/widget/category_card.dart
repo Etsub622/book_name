@@ -6,7 +6,14 @@ import 'package:go_router/go_router.dart';
 class CategoryCard extends StatefulWidget {
   final String title;
   final String extra;
-  const CategoryCard({super.key, required this.title, required this.extra});
+  final String image;
+
+  const CategoryCard({
+    super.key,
+    required this.title,
+    required this.extra,
+    required this.image,
+  });
 
   @override
   State<CategoryCard> createState() => _CategoryCardState();
@@ -16,29 +23,37 @@ class _CategoryCardState extends State<CategoryCard> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 100.h,
-      width: 100.w,
+      height: 170.h,
+      width: 150.w,
       padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: Color.fromARGB(255, 175, 134, 120),
+        color: Color(0xff301934),
         borderRadius: BorderRadius.circular(10),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.5),
-            spreadRadius: 1,
-            blurRadius: 7,
-            offset: const Offset(0, 3),
-          ),
-        ],
       ),
       child: GestureDetector(
-          onTap: () =>
-              context.go(AppPath.getBooksByCategory, extra: widget.extra),
-          child: Center(
-              child: Text(
-            widget.title,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ))),
+        onTap: () =>
+            context.go(AppPath.getBooksByCategory, extra: widget.extra),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              widget.image,
+              height: 100.h,
+              width: 150,
+            ),
+            SizedBox(height: 13.h),
+            Text(
+              widget.title,
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                  fontWeight: FontWeight.bold,
+                  color: Colors.white,
+                  fontFamily: 'Poppins',
+                  fontSize: 12.sp),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
