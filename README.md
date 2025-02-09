@@ -1,3 +1,4 @@
-Online Bookstore
+Book tracker
 
-The Online Bookstore is a platform where users can browse and purchase books categorized by genre, view detailed descriptions of the book, contact sellers directly for inquiries, and enjoy secure payment processing.
+Developed a comprehensive book management application that allows users to seamlessly add, edit, and delete books from their personal library. The app features user authentication for secure access and enables users to search for books efficiently. Additionally, users can view detailed information about each book and utilize a bookmarking feature to save their favorite titles for quick reference.
+Technologies used:Flutter,Dart,Nest Js,Bloc state management,Goroutter
